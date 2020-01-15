@@ -16,19 +16,16 @@ int puts(const char * str)
         "mov %1, %%rsi;"
         "mov %2, %%rdx;"
         "syscall;"
-        : 
-        : "r" ((uint64_t)stdin->fd), "r" (str), "r" (count)
-        : "rax", "rdi", "rsi", "rdx"
-    );
-
-    __asm__(
         "mov $1, %%rax;"
         "mov %0, %%rdi;"
-        "mov %1, %%rsi;"
+        "mov %3, %%rsi;"
         "mov $1, %%rdx;"
         "syscall;"
         : 
-        : "r" ((uint64_t)stdin->fd), "r" (&newline)
+        : "r" ((uint64_t)stdin->fd),    // %0
+          "r" (str),                    // %1
+          "r" (count),                  // %2
+          "r" (&newline)                // %3
         : "rax", "rdi", "rsi", "rdx"
     );
 
