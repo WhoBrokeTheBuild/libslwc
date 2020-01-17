@@ -1,4 +1,8 @@
-#ifndef _SLWC_STDIO_H
-#define _SLWC_STDIO_H
+#ifndef _SLWC_STDLIB_H
+#define _SLWC_STDLIB_H
 
-#endif // _SLWC_STDIO_H
+#include <stddef.h>
+
+void exit(int status);
+
+#endif // _SLWC_STDLIB_H

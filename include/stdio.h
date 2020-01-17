@@ -3,13 +3,46 @@
 
 #include <stddef.h>
 
-struct FILE;
-typedef struct FILE FILE;
+struct _IO_FILE;
+typedef struct _IO_FILE FILE;
 
-extern FILE * stdin;
-extern FILE * stdout;
-extern FILE * stderr;
+struct fpos;
+typedef struct fpos fpos_t;
 
-int puts(const char * str);
+extern struct _IO_FILE * stdin;
+extern struct _IO_FILE * stdout;
+extern struct _IO_FILE * stderr;
+
+#define EOF (-1)
+
+#define SEEK_SET (0)
+#define SEEK_CUR (1)
+#define SEEK_END (2)
+
+FILE * fopen(const char * path, const char * mode);
+
+FILE * fdopen(int fd, const char * mode);
+
+FILE * freopen(const char * path, const char * mode, FILE * fp);
+
+int fclose(FILE * fp);
+
+int fflush(FILE * fp);
+
+int fseek(FILE * fp, long offset, int whence);
+
+long ftell(FILE * fp);
+
+void rewind(FILE * fp);
+
+int fputc(int c, FILE * fp);
+
+int fputs(const char * s, FILE * fp);
+
+int putc(int c, FILE * fp);
+
+int putchar(int c);
+
+int puts(const char * s);
 
 #endif // _SLWC_STDIO_H

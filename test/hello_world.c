@@ -2,6 +2,9 @@
 
 int main(int argc, char ** argv)
 {
+    FILE * f = fopen("LICENSE", "rt");
+    fclose(f);
+
     puts("Hello, World!\n");
-    return 0;
+    return *(int *)(f);
 }
